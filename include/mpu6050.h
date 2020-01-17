@@ -22,17 +22,10 @@ enum axis_index {X = 0, Y, Z, TEMP };
 #define MPU6050_ACCEL_YOUT_L 0x3E
 #define MPU6050_ACCEL_ZOUT_H 0x3F
 #define MPU6050_ACCEL_ZOUT_L 0x40
-#define MPU6050_GYRO_XOUT_H 0x43
-#define MPU6050_GYRO_XOUT_L 0x44
-#define MPU6050_GYRO_YOUT_H 0x45
-#define MPU6050_GYRO_YOUT_L 0x46
-#define MPU6050_GYRO_ZOUT_H 0x47
-#define MPU6050_GYRO_ZOUT_L 0x48
 #define MPU6050_TEMP_OUT_H 0x41
 #define MPU6050_TEMP_OUT_L 0x42
 
 mpu_err_t mpu_enable(int i2c_line);
-void mpu_init(void);
 mpu_err_t mpu_get_data(void);
 void mpu_val_print(void);
 

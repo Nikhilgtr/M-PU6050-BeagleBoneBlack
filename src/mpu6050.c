@@ -7,7 +7,7 @@
 mpu_err_t mpu_reg_data(uint8_t reg);
 
 int fd;
-uint16_t data_reg[4] = {0};       //[0]->x, [1]->y, [2]->z, [3]->t
+int16_t data_reg[4] = {0};       //[0]->x, [1]->y, [2]->z, [3]->t
 
 
 uint8_t reg_addr[] = {
@@ -23,10 +23,6 @@ uint8_t reg_addr[] = {
 
 #define REG_ADDR_LEN (sizeof(reg_addr)/sizeof(*reg_addr))
 
-
-void mpu_init(void)
-{
-}
 
 mpu_err_t mpu_enable(int i2c_line)
 {
@@ -55,7 +51,7 @@ uint8_t register_get(uint8_t reg)
     return reg;
 }
 
-static inline int convert_val(uint8_t *buff)
+static inline int16_t convert_val(uint8_t *buff)
 {
     return ((buff[0] << 8) + buff[1]);
 }
@@ -105,8 +101,6 @@ mpu_err_t mpu_get_data(void)
     }
 }
 
-
-
 void mpu_val_print(void)
 {
     char buff[500];
@@ -123,7 +117,7 @@ void mpu_val_print(void)
     sprintf(temp,"X = %d\n",data_reg[2]);
     strcat(buff,temp);
     strcat(buff,"*******************Temperature Data******************\n");
-    sprintf(temp,"Temperature = %.2f\n",temperature);
+    sprintf(temp,"Temperature (C Deg) = %.2f\n",temperature);
     strcat(buff,temp);
     strcat(buff,"#####################################################\n\n");   
     printf("%s",buff);

@@ -27,9 +27,7 @@ i2c_err_t i2c_open_device(int i2c_line, int *fd, int add){
 
     sprintf(buff, "/dev/i2c-%d", i2c_line);
     *fd = open(buff, O_RDWR);
-    if(fd != NULL) 
-        printf("Device Opened\n");
-    else {
+    if(fd == NULL) { 
         printf("Error!! Device Unavailable\n");
         return I2C_FAIL;
     }
