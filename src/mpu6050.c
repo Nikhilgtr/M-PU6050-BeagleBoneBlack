@@ -53,7 +53,7 @@ uint8_t register_get(uint8_t reg)
 
 static inline int16_t convert_val(uint8_t *buff)
 {
-    return ((buff[0] << 8) + buff[1]);
+    return ((buff[0] << 8) | buff[1]);
 }
 
 void combine_reg_data(uint8_t *buff)
@@ -110,11 +110,11 @@ void mpu_val_print(void)
     system("clear");
     sprintf(buff,"#####################################################\n");   
     strcat(buff,"******************Accelerometer Data*****************\n");
-    sprintf(temp,"X = %d\n",data_reg[0]);
+    sprintf(temp,"X = %hd\n",data_reg[0]);
     strcat(buff,temp);
-    sprintf(temp,"Y = %d\n",data_reg[1]);
+    sprintf(temp,"Y = %hd\n",data_reg[1]);
     strcat(buff,temp);
-    sprintf(temp,"X = %d\n",data_reg[2]);
+    sprintf(temp,"X = %hd\n",data_reg[2]);
     strcat(buff,temp);
     strcat(buff,"*******************Temperature Data******************\n");
     sprintf(temp,"Temperature (C Deg) = %.2f\n",temperature);
